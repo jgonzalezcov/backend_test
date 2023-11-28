@@ -10,7 +10,7 @@ const list = async (req, res) => {
     res.json(response);
   } catch (e) {
     console.log(e);
-    res.status(500).json({ msj: 'Ha ocurrido un error en el servidor' });
+    res.status(500).json({ msj: 2});
   }
 };
 

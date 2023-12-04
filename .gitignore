@@ -2,4 +2,3 @@
 .env
 #node modules
 node_modules/
-db.sql

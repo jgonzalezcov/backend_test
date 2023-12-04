@@ -1,10 +1,10 @@
 const {
-    getTouristModel
-  } = require("../models/touristModels");
-const getTourist = async (req, res) => {
+    getTopicModel
+  } = require("../models/topicModels");
+const getTopic = async (req, res) => {
     try {
         //const query = req.query;
-        const tourists = await getTouristModel();
+        const tourists = await getTopicModel();
         res.json(tourists);
     } catch (error) {
       console.log(error);
@@ -13,6 +13,6 @@ const getTourist = async (req, res) => {
   };
   
   module.exports = {
-    getTourist, 
+    getTopic, 
   };
   

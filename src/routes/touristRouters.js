@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { getTourist } = require('../controllers/touristControllers'); 
+const {getTopic} = require('../controllers/topicControllers'); 
 
-router.get('/tourist', getTourist);
+router.get('/topic', getTopic);
 
 // Middleware para manejar rutas no encontradas
 router.use((req, res) => {

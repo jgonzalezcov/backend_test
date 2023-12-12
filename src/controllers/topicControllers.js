@@ -1,18 +1,18 @@
-const {
-    getTopicModel
-  } = require("../models/topicModels");
-const getTopic = async (req, res) => {
-    try {
-        //const query = req.query;
-        const tourists = await getTopicModel();
-        res.json(tourists);
-    } catch (error) {
-      console.log(error);
-      res.status(500).send('Error en el servidor');
-    }
-  };
+const { response } = require('express');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const TopicModel = require('../models/topicModels');
+const list = async (req, res) => {
+  try {
+    const response = await TopicModel.list();
+    res.json(response);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ msj: 'Ha ocurrido un error en el servidor' });
+  }
+};
   
-  module.exports = {
-    getTopic, 
-  };
-  
+module.exports = {
+  list,
+};

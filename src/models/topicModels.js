@@ -1,16 +1,23 @@
-const pool = require("../db/connectionDb").pool;
-const format = require("pg-format");
+const { pool, format } = require('../helpers/database')
 
-const getTopicModel = async () => { //limit = 5
-    SQLquery = {
-      text: "SELECT id, topic, user_id FROM topic",
-      //values: [limit],
-    };
-    const response = await pool.query(SQLquery);
-    return response.rows;
-  };
-  
-  module.exports = {
-    getTopicModel,
-  };
-  
+const getById = async (id) => {
+  const query = 'SELECT * FROM question WHERE topic_id = $1';
+  const values = [id];
+  const { rows } = await pool.query(query, values);
+  return rows;
+}
+
+
+
+const list = async () => {
+  const formatQuery = format('SELECT * FROM topic ORDER BY id DESC')
+  const { rows } = await pool.query(formatQuery)
+  return rows
+}
+
+
+module.exports = {
+  list,
+  getById,
+
+}

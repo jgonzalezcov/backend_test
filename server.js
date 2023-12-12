@@ -1,16 +1,7 @@
-const express = require('express');
-const app = express();
-app.use(express.static('public'));
-const cors = require('cors');
-require('dotenv').config()
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ limit: '10mb', type: 'application/json', charset: 'utf-8' }));
+const app = require('./app');
+const { serverPort } = require('./src/config/globalContants');
 
-app.use(cors());
-app.use(express.json());
-
-app.use(require('./app'));
-
-app.listen( process.env.PORT, () => {
-  console.log('El servidor esta activo en el puerto', process.env.PORT)
-});
+app.listen(
+  serverPort,
+  console.log('SERVIDOR ENCENDIDO EN EL PUERTO ' + serverPort)
+);

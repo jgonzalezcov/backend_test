@@ -29,9 +29,22 @@ const getById = async (req, res) => {
   }
 };
 
-
+const create = async (req, res) => {
+  try {
+    const {topic,user_id } = req.body
+    const resp = await QuestionModel.create(
+      topic,user_id
+    )
+    resp === 'error'
+      ? res.send('Error al crear el registro en la base de datos')
+      : res.send('Tema de estudio creado con éxito')
+  } catch (error) {
+    res.status(500).json({ message: 'Error al crear el tema de estudio' })
+  }
+}
 
 module.exports = {
   list,
   getById,
+  create,
 };

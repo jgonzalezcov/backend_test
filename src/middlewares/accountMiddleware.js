@@ -1,6 +1,5 @@
-const jwt = require('jsonwebtoken');
 const { duplicateAccount } = require('../models/accountModels');
-/**********************Valida creacion de usuario**********************/
+/**********************Valida creacion de account**********************/
 const validateFields = async (req, res, next) => {
 
   try {

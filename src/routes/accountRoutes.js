@@ -9,12 +9,12 @@ const signinMiddleware = [...middlewares, validateFields]
 
 
 /** @description Listado de todos los clientes */
-router.get('/', accountController.list)
+router.get('/',middlewares, accountController.list)
 /** @description Crear una cuenta para cliente  */
-router.post('/signin',   loggerMiddleware, validateFields, accountController.signin)
+router.post('/signin', loggerMiddleware, validateFields, accountController.signin)
 module.exports = router
 /** @description Iniciar sesión como un cliente  */
 router.post('/login', loggerMiddleware, accountController.login)
 /** @description Obtener información de un cliente específico a través de su id */
-router.get('/:id',accountController.getById)
+router.get('/:id',middlewares,accountController.getById)
 //router.get('/:id' ,middlewares, ()=>{console.log('Holaaaassss')}, accountController.getById)

@@ -51,10 +51,23 @@ const remove = async (id) => {
   }
 }
 
+
+const existsTopic = async (id) => {
+  try {
+    const values = [id]
+    const consulta = 'SELECT count(id) as num FROM topic WHERE id = $1'
+    resp = await pool.query(consulta, values)
+    return resp.rows[0].num
+  } catch (error) {
+    return 'error'
+  }
+}
+
 module.exports = {
   list,
   getById,
   create,
-  update,remove
-
+  update,
+  remove,
+  existsTopic,
 }

@@ -16,8 +16,9 @@ const list = async (req, res) => {
 }
 const create = async (req, res) => {
   try {
-    const {topic, description, category,  public, user_id} = req.body
-    const resp = await TopicModel.create(  topic, description, category,  public, user_id)
+console.log(req.body)
+    const {topic , user_id,  category,  public, description} = req.body
+    const resp = await TopicModel.create( topic , user_id,  category,  public, description)
     resp === 'error'
       ? res.send('Error al crear el registro en la base de datos')
       : res.send('Tema de estudio creado con éxito')
@@ -28,8 +29,8 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   try {
     const { id } = req.params
-    const { topic, description, category,  public, user_id } = req.body
-    const resp = await TopicModel.update(topic, description, category,  public, user_id)
+    const { topic , user_id,  category,  public, description} = req.body
+    const resp = await TopicModel.update(topic , user_id,  category,  public, description, id)
     resp === 'error'
       ? res.send('Error al actualizar el registro en la base de datos')
       : res.send('Tema de estudio actualizado con éxito')

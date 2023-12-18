@@ -20,19 +20,20 @@ const list = async (account_id) => {
     return 'error'
   }
 }
-const create = async (topic, description, category,  public, user_id) => {
+const create = async (topic , user_id,  category,  public, description) => {
+  console.log(topic , user_id,  category,  public, description)
   try {
-    const values = [topic, description, category,  public, user_id]
+    const values = [topic , user_id,  category,  public, description]
     const consulta =
-      'INSERT INTO topic values (DEFAULT, $1, $2, $3, $4,DEFAULT,DEFAULT, $5)'
+      'INSERT INTO topic values (DEFAULT, $1, $2, $3, $4, DEFAULT, DEFAULT, $5)'
     await pool.query(consulta, values)
   } catch (error) {
     return 'error'
   }
 }
-const update = async (topic, description, category,  public,  user_id, id) => {
+const update = async (topic , user_id,  category,  public, description, id) => {
   try {
-    const values = [topic, description, category,  public, user_id, id]
+    const values = [topic , user_id,  category,  public, description, id]
     const consulta =
       'UPDATE topic set topic=$1, description=$2, category=$3,  public=$4, user_id=$7 WHERE id=$3'
     await pool.query(consulta, values)

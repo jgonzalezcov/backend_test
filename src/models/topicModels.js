@@ -20,21 +20,21 @@ const list = async (account_id) => {
     return 'error'
   }
 }
-const create = async (topic,user_id) => {
+const create = async (topic, description, category,  public, user_id) => {
   try {
-    const values = [topic,user_id]
+    const values = [topic, description, category,  public, user_id]
     const consulta =
-      'INSERT INTO topic values (DEFAULT, $1, $2)'
+      'INSERT INTO topic values (DEFAULT, $1, $2, $3, $4,DEFAULT,DEFAULT, $5)'
     await pool.query(consulta, values)
   } catch (error) {
     return 'error'
   }
 }
-const update = async (topic,user_id, id) => {
+const update = async (topic, description, category,  public,  user_id, id) => {
   try {
-    const values = [topic,user_id, id]
+    const values = [topic, description, category,  public, user_id, id]
     const consulta =
-      'UPDATE topic set topic=$1, user_id=$2 WHERE id=$3'
+      'UPDATE topic set topic=$1, description=$2, category=$3,  public=$4, user_id=$7 WHERE id=$3'
     await pool.query(consulta, values)
   } catch (error) {
     return 'error'

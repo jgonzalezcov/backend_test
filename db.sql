@@ -8,17 +8,22 @@ CREATE DATABASE topic_test;
 CREATE TABLE topic (
     id SERIAL PRIMARY KEY,
     topic VARCHAR(50),
+    description VARCHAR(255),
+    category VARCHAR(50),
+    public BOOLEAN DEFAULT true,
+    likes int DEFAULT 0,
+    dislikes int DEFAULT 0,
     user_id INT NOT NULL
 );
 
 -- Insertar varios registros en la tabla 'topic' sin especificar un valor para 'id'
-INSERT INTO topic (topic, user_id) 
+INSERT INTO topic (topic, category, likes, dislikes, user_id) 
 VALUES
-('Matemáticas',1),
-('Ciencias Naturales', 1),
-('Historia', 1),
-('Geografía', 1),
-('Dragon Ball',1 );
+('Matemáticas','Matemáticas Basicas','Sumas y restas',  DEFAULT,DEFAULT,DEFAULT,1),
+('Biología','Genética','Tema para la prueba 1 del primer trimestre' , DEFAULT,DEFAULT,DEFAULT,1),
+('Historia' , 'Egipto', 'Examen de Historia Octavo Basico',  DEFAULT,DEFAULT,DEFAULT,1),
+('Geografía', 'Geografía Política' , 'Estudio Geografia Cuarto medio', DEFAULT,DEFAULT,DEFAULT,1);
+
 
 
 -- Crear la tabla 'question' con una columna 'id' como clave primaria y una columna 'question'

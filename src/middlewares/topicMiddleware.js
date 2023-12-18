@@ -3,15 +3,21 @@ const validateFields = async (req, res, next) => {
 
   try {
 
-    const { topic,user_id} = req.body;
+    const { topic, description, category,  public, user_id} = req.body;
    
-    // console.log(resp)
+
     if (
-      topic === undefined ||
-      user_id === undefined ||
-      topic === '' ||
-      user_id  === '' 
-  
+      
+      topic === undefined || 
+      description === undefined || 
+      category === undefined ||  
+      public === undefined || 
+      user_id  === undefined  ||
+      topic === '' || 
+      description === '' || 
+      category === '' ||  
+      public === '' || 
+      user_id  === ''
     ) {
 
       res.status(400).json({
@@ -26,6 +32,10 @@ const validateFields = async (req, res, next) => {
     res.status(500).json({ message: 'Error al crear tema de estudio' });
   }
 };
+
+
+
+
 const updateFields = async (req, res, next) => {
 
     try {

@@ -32,10 +32,11 @@ const create = async (topic , user_id,  category,  public, description) => {
   }
 }
 const update = async (topic , user_id,  category,  public, description, id) => {
+
   try {
     const values = [topic , user_id,  category,  public, description, id]
-    const consulta =
-      'UPDATE topic set topic=$1, description=$2, category=$3,  public=$4, user_id=$7 WHERE id=$3'
+    const consulta =  'UPDATE topic SET topic=$1 , user_id=$2,  category=$3,  public=$4, description=$5 WHERE id=$6'
+console.log(consulta) 
     await pool.query(consulta, values)
   } catch (error) {
     return 'error'

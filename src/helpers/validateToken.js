@@ -1,21 +1,16 @@
 const jwt = require('jsonwebtoken');
+const util = require('util');
 const { showError } = require('../helpers/errorHelper');
+
+const verifyAsync = util.promisify(jwt.verify);
 
 const validateToken = async (token, res) => {
   try {
-    const validate = await jwt.verify(
-      token,
-      process.env.JWT_SECRET,
-      (error, payload) => {
-        if (error) {
-          throw new Error('El token no ha sido valido', error);
-        }
-        return payload;
-      }
-    );
+    const validate = await verifyAsync(token, process.env.JWT_SECRET);
     return validate;
   } catch (e) {
-    showError(res, e);
+console.log('Token no valido') // Propagar el error para que pueda ser capturado por el código que llama a validateToken
   }
 };
+
 module.exports = { validateToken };
